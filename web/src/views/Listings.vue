@@ -1,0 +1,90 @@
+<template>
+    <div class="container-fluid">
+        <!-- <div class="d-flex justify-content-center" v-if="isLoading">
+            <PageSpinner />
+        </div> -->
+        <div class="row">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">s/n</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Date Added</th>
+                        <th scope="col">Expiry Date</th>
+                        <th scope="col">Quantity Left</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody v-for="(product, index) in products" :key="product.name">
+                    <tr>
+                        <th scope="row">{{ index + 1 }}</th>
+                        <td>{{ product.name }}</td>
+                        <td>
+                            {{
+                                new Date(`${product.createdAt}`).toLocaleString(
+                                    'en-US',
+                                    {
+                                        timeZone: 'UTC',
+                                    }
+                                )
+                            }}
+                        </td>
+                        <td>{{ product.expiry_date }}</td>
+                        <td>{{ product.quantity_in_stock }}</td>
+                        <td>
+                            <div class="d-inline-block">
+                                <span class="p-1">
+                                    <router-link to="/products/:id">
+                                        view</router-link
+                                    >
+                                </span>
+                                <span class="p-1"
+                                    ><router-link to="/products/:id">
+                                        edit</router-link
+                                    ></span
+                                >
+                                <span class="p-1"
+                                    ><router-link to="/products/:id">
+                                        delete</router-link
+                                    ></span
+                                >
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            isLoading: false,
+            products: [],
+        };
+    },
+
+    methods: {
+        async loadProducts() {
+            try {
+                let result = await fetch('http://localhost:3100/api/products/');
+                if (!result.ok) alert('An error occured');
+                let response = await result.json();
+                let data = response.data.product;
+                this.products = data;
+                console.log(this.products);
+            } catch (err) {
+                alert(err.message);
+            }
+        },
+    },
+
+    mounted() {
+        this.loadProducts();
+    },
+};
+</script>
+
+<style></style>
