@@ -19,25 +19,26 @@
                         <div class="form-group row">
                             <div class="col-xs-1">
                                 <input
-                                type="number"
-                                class="form-control form-control-sm shadow-none py-1"
-                                id="quantity"
-                                aria-describedby="quantity"
-                                autocomplete="off"
-                                v-model.trim="quantity"
-                            />
+                                    type="number"
+                                    class="form-control form-control-sm shadow-none py-1"
+                                    id="quantity"
+                                    aria-describedby="quantity"
+                                    autocomplete="off"
+                                    v-model.trim="quantity"
+                                />
                             </div>
-                            <Button :class="{ 'blur-loader': isLoading === true }">
-                            <div v-if="isLoading">
-                                <span class="mr-1">
-                                    <ButtonSpinner />
-                                </span>
-                                Adding product
-                            </div>
-                            <div v-else>Submit</div>
-                        </Button>
+                            <Button
+                                :class="{ 'blur-loader': isLoading === true }"
+                            >
+                                <div v-if="isLoading">
+                                    <span class="mr-1">
+                                        <ButtonSpinner />
+                                    </span>
+                                    Adding to cart
+                                </div>
+                                <div v-else>Add to cart</div>
+                            </Button>
                         </div>
-                        
                     </form>
                 </div>
             </div>
