@@ -238,8 +238,8 @@ export default {
                     let message = response.message;
                     alert(message);
                     this.isLoading = false;
+                    this.$router.push('/');
                 }, 1000);
-                this.$router.push('/');
             } catch (err) {
                 console.error(err.message);
             }
