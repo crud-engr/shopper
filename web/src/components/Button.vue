@@ -1,5 +1,5 @@
 <template>
-    <button class="btn btn-dark btn-sm shadow">
+    <button class="btn btn-sm shadow">
         <slot></slot>
     </button>
 </template>
