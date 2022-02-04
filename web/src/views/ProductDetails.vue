@@ -28,6 +28,7 @@
                                 />
                             </div>
                             <Button
+                                class="btn-dark"
                                 :class="{ 'blur-loader': isLoading === true }"
                             >
                                 <div v-if="isLoading">
