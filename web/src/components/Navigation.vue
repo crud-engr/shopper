@@ -45,7 +45,7 @@
                     style="width: 80%"
                 />
 
-                <Button>
+                <Button class="btn-dark">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
