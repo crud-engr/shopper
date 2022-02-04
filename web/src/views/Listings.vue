@@ -34,18 +34,27 @@
                         <td>
                             <div class="d-inline-block">
                                 <span class="p-1">
-                                    <router-link to="/products/:id">
+                                    <router-link
+                                        :to="`/products/${product._id}`"
+                                        class="btn btn-sm btn-primary"
+                                    >
                                         view</router-link
                                     >
                                 </span>
                                 <span class="p-1"
-                                    ><router-link to="/products/:id">
+                                    ><router-link
+                                        :to="`/products/edit-product/${product._id}`"
+                                        class="btn btn-sm btn-warning"
+                                    >
                                         edit</router-link
                                     ></span
                                 >
                                 <span class="p-1"
-                                    ><router-link to="/products/:id">
-                                        delete</router-link
+                                    ><Button
+                                        @click="deleteProduct"
+                                        class="btn-danger"
+                                    >
+                                        delete</Button
                                     ></span
                                 >
                             </div>
@@ -79,6 +88,10 @@ export default {
                 alert(err.message);
             }
         },
+
+        async deleteProduct() {
+            
+        }
     },
 
     mounted() {
