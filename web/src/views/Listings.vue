@@ -1,9 +1,9 @@
 <template>
     <div class="container-fluid">
-        <!-- <div class="d-flex justify-content-center" v-if="isLoading">
+        <div class="d-flex justify-content-center" v-if="isLoading">
             <PageSpinner />
-        </div> -->
-        <div class="row">
+        </div>
+        <div class="row" v-if="!isLoading">
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
@@ -77,13 +77,16 @@ export default {
 
     methods: {
         async loadProducts() {
+            this.isLoading = true;
             try {
-                let result = await fetch('http://localhost:3100/api/products/');
-                if (!result.ok) alert('An error occured');
-                let response = await result.json();
-                let data = response.data.product;
-                this.products = data;
-                console.log(this.products);
+                setTimeout(async () => {
+                    let result = await fetch('http://localhost:3100/api/products/');
+                    if (!result.ok) alert('An error occured');
+                    let response = await result.json();
+                    let data = response.data.product;
+                    this.products = data;
+                    this.isLoading = false;
+                }, 1000)
             } catch (err) {
                 alert(err.message);
             }
