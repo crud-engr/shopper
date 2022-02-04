@@ -173,7 +173,7 @@
                             </p>
                         </div>
 
-                        <Button :class="{ 'blur-loader': isLoading === true }">
+                        <Button class="btn-dark" :class="{ 'blur-loader': isLoading === true }">
                             <div v-if="isLoading">
                                 <span class="mr-1">
                                     <ButtonSpinner />
@@ -236,9 +236,8 @@ export default {
                     if (!result.ok) alert('An error occured');
                     let response = await result.json();
                     let message = response.message;
-                    alert(message);
+                    console.log(message);
                     this.isLoading = false;
-                    this.$router.push('/');
                 }, 1000);
             } catch (err) {
                 console.error(err.message);
