@@ -173,7 +173,10 @@
                             </p>
                         </div>
 
-                        <Button class="btn-dark" :class="{ 'blur-loader': isLoading === true }">
+                        <Button
+                            class="btn-dark"
+                            :class="{ 'blur-loader': isLoading === true }"
+                        >
                             <div v-if="isLoading">
                                 <span class="mr-1">
                                     <ButtonSpinner />
@@ -190,6 +193,8 @@
 </template>
 
 <script>
+import { notify } from 'notiwind';
+
 export default {
     data() {
         return {
@@ -212,7 +217,8 @@ export default {
     },
 
     methods: {
-        async addProduct() {
+        async addProduct(e) {
+            e.preventDefault();
             this.isLoading = true;
             let payload = {
                 name: this.name,
@@ -233,14 +239,43 @@ export default {
                             body: JSON.stringify(payload),
                         }
                     );
-                    if (!result.ok) alert('An error occured');
-                    let response = await result.json();
-                    let message = response.message;
-                    console.log(message);
-                    this.isLoading = false;
-                }, 1000);
+                    console.log(result);
+                    if (!result.ok) {
+                        this.isLoading = false;
+                        this.$notify(
+                            {
+                                group: 'error',
+                                title: 'Error',
+                                text: 'An error occured! Please retry.',
+                            },
+                            5000
+                        );
+                    } else {
+                        let response = await result.json();
+                        let message = response.message;
+                        console.log(message);
+                        this.isLoading = false;
+                        this.$notify(
+                            {
+                                group: 'success',
+                                title: 'Success',
+                                text: message,
+                            },
+                            2500
+                        );
+                    }
+                }, 1500);
             } catch (err) {
                 console.error(err.message);
+                this.isLoading = false;
+                this.$notify(
+                    {
+                        group: 'error',
+                        title: 'Error',
+                        text: err.message,
+                    },
+                    4000
+                );
             }
 
             this.resetForm();
