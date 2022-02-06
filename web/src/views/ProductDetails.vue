@@ -55,7 +55,8 @@ export default {
         };
     },
     methods: {
-        async loadProduct() {
+        async loadProduct(e) {
+            e.preventDefault();
             try {
                 setTimeout(async () => {
                     let id = this.$route.params.id;
