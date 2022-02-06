@@ -8,7 +8,7 @@
             />
         </router-link>
         <Button
-            class="navbar-toggler"
+            class="navbar-toggler btn-dark"
             type="button"
             data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -70,4 +70,6 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
