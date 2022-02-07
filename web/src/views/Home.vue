@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-center" v-if="isLoading">
             <PageSpinner />
         </div>
-        
+
         <div class="row">
             <div
                 class="col-sm-12 col-md-3 mb-4"
@@ -11,7 +11,7 @@
                 :key="product.name"
             >
                 <div class="card shadow-sm" style="width: 18rem">
-                    <router-link :to="`/products/${product._id}`">
+                    <router-link :to="`/product/${product._id}`">
                         <img
                             :src="product.image"
                             class="card-img-top"
@@ -21,10 +21,13 @@
                         />
                     </router-link>
                     <div class="card-body card-content">
-                        <a href="#" class="nav-link product-name">
+                        <router-link
+                            :to="`/product/${product._id}`"
+                            class="nav-link product-name"
+                        >
                             <p class="card-text">
                                 {{ product.name.toUpperCase() }}
-                            </p></a
+                            </p></router-link
                         >
                     </div>
                     <div class="card-body card-content">
