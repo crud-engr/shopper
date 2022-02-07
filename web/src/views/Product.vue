@@ -193,7 +193,6 @@
 </template>
 
 <script>
-import { notify } from 'notiwind';
 
 export default {
     data() {
@@ -239,7 +238,6 @@ export default {
                             body: JSON.stringify(payload),
                         }
                     );
-                    console.log(result);
                     if (!result.ok) {
                         this.isLoading = false;
                         this.$notify(
@@ -253,7 +251,6 @@ export default {
                     } else {
                         let response = await result.json();
                         let message = response.message;
-                        console.log(message);
                         this.isLoading = false;
                         this.$notify(
                             {
@@ -266,7 +263,6 @@ export default {
                     }
                 }, 1500);
             } catch (err) {
-                console.error(err.message);
                 this.isLoading = false;
                 this.$notify(
                     {
