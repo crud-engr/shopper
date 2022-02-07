@@ -205,16 +205,19 @@ exports.addToCart = async (req, res) => {
                 code: 404,
             });
         const productId = product._id;
+        const productPrice = Number(product.price);
         if (quantity < 1)
             return res.status(400).json({
                 status: 'fail',
                 message: 'quantity can not be less than one (1)',
                 code: 400,
             });
-        const cart = await Cart.create({
+        const payload = {
             product: productId,
             quantity,
-        });
+            totalPrice: Number(productPrice * quantity),
+        };
+        const cart = await Cart.create(payload);
         return res.status(200).json({
             status: 'success',
             message: 'product added to cart',
