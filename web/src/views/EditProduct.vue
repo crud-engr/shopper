@@ -173,10 +173,7 @@
                             </p>
                         </div>
 
-                        <Button
-                            class="btn-dark"
-                            :class="{ 'blur-loader': isLoading === true }"
-                        >
+                        <Button :class="{ 'blur-loader': isLoading === true }">
                             <div v-if="isLoading">
                                 <span class="mr-1">
                                     <ButtonSpinner />
@@ -193,7 +190,6 @@
 </template>
 
 <script>
-
 export default {
     data() {
         return {
@@ -216,8 +212,7 @@ export default {
     },
 
     methods: {
-        async addProduct(e) {
-            e.preventDefault();
+        async addProduct() {
             this.isLoading = true;
             let payload = {
                 name: this.name,
@@ -239,39 +234,23 @@ export default {
                         }
                     );
                     if (!result.ok) {
-                        this.isLoading = false;
                         this.$notify(
                             {
                                 group: 'error',
                                 title: 'Error',
-                                text: 'An error occured! Please retry.',
+                                text: 'An error occured',
                             },
-                            5000
-                        );
-                    } else {
-                        let response = await result.json();
-                        let message = response.message;
-                        this.isLoading = false;
-                        this.$notify(
-                            {
-                                group: 'success',
-                                title: 'Success',
-                                text: message,
-                            },
-                            2500
+                            4000
                         );
                     }
-                }, 1500);
+                    let response = await result.json();
+                    let message = response.message;
+                    alert(message);
+                    this.isLoading = false;
+                    this.$router.push('/');
+                }, 1000);
             } catch (err) {
-                this.isLoading = false;
-                this.$notify(
-                    {
-                        group: 'error',
-                        title: 'Error',
-                        text: err.message,
-                    },
-                    4000
-                );
+                console.error(err.message);
             }
 
             this.resetForm();

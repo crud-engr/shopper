@@ -103,7 +103,7 @@ export default {
                     let data = response.data.product;
                     this.products = data;
                     this.isLoading = false;
-                }, 1000);
+                }, 200);
             } catch (err) {
                 alert(err.message);
             }

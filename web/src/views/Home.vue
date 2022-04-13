@@ -65,15 +65,20 @@ export default {
                     let result = await fetch(
                         'http://localhost:3100/api/products/'
                     );
-                    if (!result.ok) alert('An error occured');
+                    if (!result.ok) {
+                        this.isLoading = false;
+                        this.$notify({
+                            group: 'error',
+                            title: 'Error',
+                            text: 'An error occured! Please retry',
+                        });
+                    }
                     let response = await result.json();
                     let data = response.data.product;
                     this.products = data;
                     this.isLoading = false;
-                }, 1000);
-            } catch (err) {
-                alert(err.message);
-            }
+                }, 200);
+            } catch (err) {}
         },
     },
 
