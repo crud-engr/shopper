@@ -85,26 +85,12 @@
                                 }}
                             </p>
                         </div>
-                        <div
-                            class="d-flex justify-content-between font-weight-bold"
+
+                        <Button
+                            class="btn-block btn-success font-weight-bold"
+                            @click.prevent="payForProduct"
+                            >PAY</Button
                         >
-                            <p class="card-text">Delivery</p>
-                            <p class="card-text text-muted">None</p>
-                        </div>
-                        <Button class="btn-block btn-success font-weight-bold"
-                            >CHECKOUT</Button
-                        >
-                        <h6 class="card-title font-weight-bold mt-3">
-                            WE ACCEPT
-                        </h6>
-                        <div
-                            class="payment-icons d-flex justify-content-between mt-4"
-                        >
-                            <p>Icon 1</p>
-                            <p>Icon 2</p>
-                            <p>Icon 3</p>
-                            <p>Icon 4</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -161,6 +147,10 @@ export default {
                     5000
                 );
             }
+        },
+        async payForProduct() {
+            // consume justifi payment api to pay
+            console.log('Paying for product!!!!!');
         },
     },
 

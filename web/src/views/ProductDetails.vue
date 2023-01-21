@@ -42,7 +42,7 @@
                     </div>
                 </form>
                 <div class="analysis mt-2">
-                    x{{ quantity }} = <b>${{ product.price * quantity }}</b>
+                    x{{ quantity }} = <b>N{{ product.price * quantity }}</b>
                 </div>
             </div>
         </div>
