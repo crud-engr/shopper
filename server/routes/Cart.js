@@ -10,4 +10,6 @@ router
     .patch(cartController.updateCart)
     .delete(cartController.deleteCart);
 
+router.route('/:id/pay').post(cartController.payProduct);
+
 module.exports = router;

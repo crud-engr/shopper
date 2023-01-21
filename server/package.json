@@ -4,12 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon app.js",
+    "dev": "SET NODE_ENV=development & nodemon app.js",
     "start": "NODE_ENV=production node app.js"
   },
   "author": "Abeeb Ayinla",
   "license": "ISC",
   "dependencies": {
+    "@justifi/justifi-node": "^0.2.1",
     "cors": "^2.8.5",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",

@@ -1,4 +1,10 @@
+const Justifi = require('@justifi/justifi-node');
 const Cart = require('../models/Cart');
+
+const client = Justifi.client().withCredentials({
+    clientId: '<your_client_id>',
+    clientSecret: '<your_client_secret>',
+});
 
 exports.getAllCart = async (req, res) => {
     try {
@@ -10,7 +16,7 @@ exports.getAllCart = async (req, res) => {
             code: 200,
         });
     } catch (err) {
-        console.log(err.message)
+        console.log(err.message);
         return res.status(500).status({
             status: 'fail',
             message: 'server error',
@@ -53,13 +59,9 @@ exports.updateCart = async (req, res) => {
                 message: 'cart not found',
                 code: 404,
             });
-        const updatedCart = await Cart.findOneAndUpdate(
-            { _id: id },
-            req.body,
-            {
-                new: true,
-            }
-        ).exec();
+        const updatedCart = await Cart.findOneAndUpdate({ _id: id }, req.body, {
+            new: true,
+        }).exec();
 
         return res.status(200).json({
             status: 'success',
@@ -92,6 +94,34 @@ exports.deleteCart = async (req, res) => {
             data: null,
             code: 204,
         });
+    } catch (err) {
+        return res.status(500).json({
+            status: 'error',
+            message: 'server error',
+            code: 500,
+        });
+    }
+};
+
+exports.payProduct = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const cart = await Cart.findOne({ _id: id });
+        if (!cart)
+            return res.status(404).json({
+                status: 'fail',
+                message: 'product not found',
+                code: 404,
+            });
+
+        // make request to justifi payment api
+
+        // return res.status(200).json({
+        //     status: 'success',
+        //     message: 'payment successful',
+        //     data: null,
+        //     code: 200,
+        // });
     } catch (err) {
         return res.status(500).json({
             status: 'error',

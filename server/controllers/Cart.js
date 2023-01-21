@@ -16,3 +16,7 @@ exports.deleteCart = async (req, res) => {
     return cartService.deleteCart(req, res);
 };
 
+exports.payProduct = async (req, res) => {
+    return cartService.payProduct(req, res);
+};
+

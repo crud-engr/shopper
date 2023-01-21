@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { NODE_ENV } = process.env;
 require('dotenv').config();
 
-let db_url = NODE_ENV === 'development' ? process.env.LOCAL_DB : process.env.LIVE_DB;
+let db_url = process.env.LOCAL_DB;
 
 const connectDB = async () => {
     try {
